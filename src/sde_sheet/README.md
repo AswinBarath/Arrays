@@ -2,7 +2,7 @@
 
 SDE Sheet problems on Arrays
 
-[Sheet Link](https://docs.google.com/document/d/1SM92efk8oDl8nyVw8NHPnbGexTS9W-1gmTEYfEurLWQ/edit)
+[Sheet Link](https://takeuforward.org/interviews/strivers-sde-sheet-top-coding-interview-problems/)
 
 ### Day 1 (Arrays)
 
