@@ -43,42 +43,51 @@ Problems based on the Array data structure
 
 ### Sort an array
 
-Sort an array of 0's 1's & 2's (without using extra space or sorting algo)
-Given an array nums with n objects colored red, white, or blue, sort them in-place so that objects of the same color are adjacent, with the colors in the order red, white, and blue.
-We will use the integers 0, 1, and 2 to represent the color red, white, and blue, respectively.
-You must solve this problem without using the library's sort function.
+#### Sort an array of 0's 1's & 2's (without using extra space or sorting algo).
+- Given an array nums with n objects colored red, white, or blue, sort them in-place so that objects of the same color are adjacent, with the colors in the order red, white, and blue.
+- We will use the integers 0, 1, and 2 to represent the color red, white, and blue, respectively.
+- You must solve this problem without using the library's sort function.
 
 Example 1:
+```
 Input:    nums = [2,0,2,1,1,0]
-Output:               [0,0,1,1,2,2]
-
+Output:          [0,0,1,1,2,2]
+```
 Example 2:
+```
 Input:    nums = [2,0,1]
-Output:              [0,1,2]
+Output:          [0,1,2]
+```
 
-Approach:
-Brute-force | Time Complexity: O(N log N) | Space Complexity: O(1)
+#### Approach:
+**Brute-force | Time Complexity: O(N log N) | Space Complexity: O(1)**
 
 - Sort the array
 
-Better          | Time Complexity: O(2N)         | Space Complexity: O(1)
+**Better          | Time Complexity: O(2N)         | Space Complexity: O(1)**
 
 - Use Counting sort:
-        - Loop one for linear Traversal for counting number of 0's 1's & 2's
-        - Loop two for inserting 0's 1's & 2's using the obtained count
+- Loop one for linear Traversal for counting number of 0's 1's & 2's
+- Loop two for inserting 0's 1's & 2's using the obtained count
 
-Optimal       | Time Complexity: O(N)          | Space Complexity: O(1)
+**Optimal       | Time Complexity: O(N)          | Space Complexity: O(1)**
 
 - Use Dutch National Flag Algorithm
-        - Consider three pointers: low, mid and high
-        - Point low, mid at the start and high at the end
-        - Move mid pointer until mid crosses high and check:
-        - mid == 0 then swap: a[low], a[mid] and low++, mid++
-        - mid == 1 then mid++
-        - mid == 2 then swap: a[high], a[mid] and high--
-        - The algorithm is based on the fact that:
-                - Array elements from [0 - low-1] contains 0
-                - Array elements from [high+1 - n] contains 2
+- Consider three pointers: low, mid and high
+- Point low & mid at the starting point of the array
+- And high at the end of the array
+- Move mid pointer until mid crosses high and check:
+  - mid == 0 then swap the values: 
+    - a[low] <=> a[mid] 
+    - And low++, mid++ (Increment both low and mid pointers)
+  - mid == 1 then 
+    - mid++ (increment mid pointer)
+  - mid == 2 then swap the values: 
+    - a[high] <=> a[mid] 
+    - and high-- (decrement high pointer)
+- The algorithm is based on the fact that:
+  - Array elements from [0 - low-1] contains 0
+  - Array elements from [high+1 - n] contains 2
 
 [🔼 Back to Top 🔼](#Arrays)
 
@@ -86,42 +95,49 @@ Optimal       | Time Complexity: O(N)          | Space Complexity: O(1)
 
 ### Repeat and Missing Number
 
-Given an unsorted array of size n. Array elements are in the range from 1 to n. One number from set {1, 2, …n} is missing and one number occurs twice in the array. Find these two numbers.
+- Given an unsorted array of size n. 
+- Array elements are in the range from 1 to n. 
+- One number from set {1, 2, …n} is missing and one number occurs twice in the array. 
+- Find these two numbers.
 
 Examples:
+```
 Input: arr[] = {3, 1, 3}
 Output: Missing = 2, Repeating = 3
+```
 
+```
 Input: arr[] = {4, 3, 6, 2, 1, 1}
 Output: Missing = 5, Repeating = 1
+```
 
-Approach:
-Brute-force | Time Complexity: O(N log N) | Space Complexity: O(1)
-Sort the input array.
-Traverse the array and check for missing and repeating.
+#### Approach:
+**Brute-force | Time Complexity: O(N log N) | Space Complexity: O(1)**
+- Sort the input array.
+- Traverse the array and check for missing and repeating.
 
-Better         | Time Complexity: O(N)           | Space Complexity: O(N)  
-Hashing: Create a temp array temp[] of size n with all initial values as 0.
-Traverse the input array arr[], and do following for each arr[i]
-if(temp[arr[i]] == 0) temp[arr[i]] = 1;
-if(temp[arr[i]] == 1) output “arr[i]” //repeating
-Traverse temp[] and output the array element having value as 0 (This is the missing element)
+**Better         | Time Complexity: O(N)           | Space Complexity: O(N)**
+- Hashing: Create a temp array temp[] of size n with all initial values as 0.
+- Traverse the input array arr[], and do following for each arr[i]
+- if(temp[arr[i]] == 0) temp[arr[i]] = 1;
+- if(temp[arr[i]] == 1) output “arr[i]” //repeating
+- Traverse temp[] and output the array element having value as 0 (This is the missing element)
 
-Optimal - I | Time Complexity: O(N)        | Space Complexity: O(1)
-Let x be the missing and y be the repeating element.
-Get the sum of all numbers using formula S = n(n+1)/2 – x + y
-Get product of all numbers using formula P = `1*2*3*…*n * y / x`
-The above two steps give us two equations, we can solve the equations and get the values of x and y.
-Note: This method can cause arithmetic overflow as we calculate product and sum of all array elements.
+**Optimal - I | Time Complexity: O(N)        | Space Complexity: O(1)**
+- Let x be the missing and y be the repeating element.
+- Get the sum of all numbers using formula S = n(n+1)/2 – x + y
+- Get product of all numbers using formula P = `1*2*3*…*n * y / x`
+- The above two steps give us two equations, we can solve the equations and get the values of x and y.
+- Note: This method can cause arithmetic overflow as we calculate product and sum of all array elements.
 
-Optimal - II | Time Complexity: O(N)       | Space Complexity: O(1)
-Use XOR: Let x and y be the desired output elements.
-Calculate XOR of all the array elements:      xor1 = arr[0]^arr[1]^arr[2]…..arr[n-1]
-XOR the result with all numbers from 1 to n: xor1 = xor1^1^2^…..^n
-In the result xor1, all elements would nullify each other except x and y.
-All the bits that are set in xor1 will be set in either x or y.
-So if we take any set bit (We have chosen the rightmost set bit in code) of xor1 and divide the elements of the array in two sets – one set of elements with the same bit set and other set with the same bit not set. By doing so, we will get x in one set and y in another set.
-Now if we do XOR of all the elements in the first set, we will get x, and by doing the same in the other set we will get y.
+**Optimal - II | Time Complexity: O(N)       | Space Complexity: O(1)**
+- Use XOR: Let x and y be the desired output elements.
+- Calculate XOR of all the array elements:      xor1 = arr[0]^arr[1]^arr[2] ... arr[n-1]
+- XOR the result with all numbers from 1 to n: xor1 = xor1^1^2^...^n
+- In the result xor1, all elements would nullify each other except x and y.
+- All the bits that are set in xor1 will be set in either x or y.
+- So if we take any set bit (We have chosen the rightmost set bit in code) of xor1 and divide the elements of the array in two sets – one set of elements with the same bit set and other set with the same bit not set. By doing so, we will get x in one set and y in another set.
+- Now if we do XOR of all the elements in the first set, we will get x, and by doing the same in the other set we will get y.
 
 [🔼 Back to Top 🔼](#Arrays)
 
