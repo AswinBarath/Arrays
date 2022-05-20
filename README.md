@@ -89,6 +89,8 @@ Output:          [0,1,2]
   - Array elements from [0 - low-1] contains 0
   - Array elements from [high+1 - n] contains 2
 
+<img src="./assets/Sort 0s 1s 2s Dry Run.jpg" alt="Sort 0s 1s 2s Dry Run" />
+
 [🔼 Back to Top 🔼](#Arrays)
 
 ---
